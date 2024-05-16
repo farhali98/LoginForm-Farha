@@ -15,36 +15,16 @@ namespace LoginForm_CSharp.Views
     public partial class DashboardForm : Form
     {
         private readonly string username;
-        MySqlConnection connection = new MySqlConnection("server=localhost;database=form;port=3306;username=root;password=");
+        private MySqlConnection connection = new MySqlConnection("server=localhost;database=c_form;port=3306;username=root;password=");
 
-        MySqlCommand command;
-        MySqlDataReader dr;
-
-        public DashboardForm(string username)
+        public DashboardForm()
         {
-           
+            InitializeComponent();
+             // Store the logged-in username
+            PopulateListBox(); // Populate the list box when the form is loaded
         }
 
-       
-        
-
-        private void LogoutButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Add_student studenForm = new Add_student();
-            studenForm.Show();
-
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void PopulateListBox()
         {
             try
             {
@@ -66,9 +46,11 @@ namespace LoginForm_CSharp.Views
                     // Loop through the result set
                     while (reader.Read())
                     {
-                        // Assuming the student's name is in a column named "Name"
-                        // Add each student's name to the ListBox
-                        listBox1.Items.Add(reader["fname"].ToString());
+                        // Assuming the student's name is in a column named "fname"
+                        string studentInfo = $"{reader["student_id"]} - {reader["fname"]}";
+
+                        // Add the concatenated string to the ListBox
+                        listBox1.Items.Add(studentInfo);
                     }
                 }
             }
@@ -84,9 +66,25 @@ namespace LoginForm_CSharp.Views
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Add_student studenForm = new Add_student();
+            studenForm.Show();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Delete_student studenForm = new Delete_student();
+            studenForm.Show();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            update_stuent studenForm = new update_stuent();
+            studenForm.Show();
         }
     }
 }

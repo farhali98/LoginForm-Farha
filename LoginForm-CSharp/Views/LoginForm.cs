@@ -13,11 +13,10 @@ using MySqlConnector;
 namespace LoginForm_CSharp
 {
     public partial class LoginForm : Form
-    { 
-        //sql connection
-        MySqlConnection connection = new MySqlConnection("server=localhost;database=form;port=3306;username=root;password=");
-        MySqlCommand command;
-        MySqlDataReader dr;
+    {
+        // SQL connection
+        MySqlConnection connection = new MySqlConnection("server=localhost;database=c_form;port=3306;username=root;password=");
+
         public LoginForm()
         {
             InitializeComponent();
@@ -25,36 +24,37 @@ namespace LoginForm_CSharp
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            try 
-
-            { 
-                // if blank form is submitted 
+            try
+            {
+                // If blank form is submitted 
                 if (string.IsNullOrEmpty(LogUsernameText.Text) || string.IsNullOrEmpty(LogPasswordText.Text))
                 {
                     MessageBox.Show("Please enter username and password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                //begin sql connection
+
+                // Open SQL connection
                 connection.Open();
                 string selectQuery = "SELECT * FROM users WHERE Username = @Username AND Password = @Password";
-                command = new MySqlCommand(selectQuery, connection);
+                MySqlCommand command = new MySqlCommand(selectQuery, connection);
                 command.Parameters.AddWithValue("@Username", LogUsernameText.Text);
                 command.Parameters.AddWithValue("@Password", LogPasswordText.Text);
-                dr = command.ExecuteReader();
+                MySqlDataReader dr = command.ExecuteReader();
 
                 if (dr.Read())
                 {
                     MessageBox.Show("Login Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
-                    string LoggedUserName = LogUsernameText.Text;
-                    DashboardForm dashboardForm = new DashboardForm(LoggedUserName);
+                    string loggedUserName = LogUsernameText.Text;
+                    DashboardForm dashboardForm = new DashboardForm();
                     dashboardForm.Show();
+                     // Close the login form after opening dashboard
                 }
                 else
                 {
                     MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }  
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -66,14 +66,14 @@ namespace LoginForm_CSharp
                     connection.Close();
                 }
             }
-            
         }
 
         private void GoToRegisterButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             RegisterForm registerForm = new RegisterForm();
-            registerForm.Show();
+            registerForm.ShowDialog();
+            this.Show(); // Show the login form again after registering
         }
     }
 }

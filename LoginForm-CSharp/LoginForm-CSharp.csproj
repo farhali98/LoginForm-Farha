@@ -90,6 +90,12 @@
     <Compile Include="Views\Add_student.Designer.cs">
       <DependentUpon>Add_student.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Delete_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Delete_student.Designer.cs">
+      <DependentUpon>Delete_student.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,12 @@
     </Compile>
     <Compile Include="Views\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\update_stuent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\update_stuent.Designer.cs">
+      <DependentUpon>update_stuent.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,11 +131,17 @@
     <EmbeddedResource Include="Views\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Delete_student.resx">
+      <DependentUpon>Delete_student.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\update_stuent.resx">
+      <DependentUpon>update_stuent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
