@@ -75,7 +75,7 @@ namespace LoginForm_CSharp
                     MessageBox.Show("Account Created Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
                     string LoggedUserName = RegUsernameText.Text;
-                    DashboardForm dashboardForm = new DashboardForm(LoggedUserName);
+                    DashboardForm dashboardForm = new DashboardForm();
                     dashboardForm.Show(); ;
                 }
             }
@@ -116,6 +116,11 @@ namespace LoginForm_CSharp
         }
 
         private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegLastNameText_TextChanged(object sender, EventArgs e)
         {
 
         }

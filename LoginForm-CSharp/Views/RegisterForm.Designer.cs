@@ -124,6 +124,7 @@
             this.RegLastNameText.Name = "RegLastNameText";
             this.RegLastNameText.Size = new System.Drawing.Size(207, 30);
             this.RegLastNameText.TabIndex = 14;
+            this.RegLastNameText.TextChanged += new System.EventHandler(this.RegLastNameText_TextChanged);
             // 
             // label5
             // 
